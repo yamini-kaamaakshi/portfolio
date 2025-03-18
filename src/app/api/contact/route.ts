@@ -26,10 +26,17 @@ export async function POST(req: Request) {
             JSON.stringify({ success: true, message: "Email sent successfully!" }),
             { status: 200 }
         );
-    } catch (error: any) { // Type error as 'any'
-        return new Response(
-            JSON.stringify({ success: false, message: "Email sending failed", error: error.message }),
-            { status: 500 }
-        );
+    } catch (error: unknown) { // Type error as 'unknown'
+        if (error instanceof Error) { // Check if error is an instance of Error
+            return new Response(
+                JSON.stringify({ success: false, message: "Email sending failed", error: error.message }),
+                { status: 500 }
+            );
+        } else {
+            return new Response(
+                JSON.stringify({ success: false, message: "Unknown error occurred", error: "Unknown" }),
+                { status: 500 }
+            );
+        }
     }
 }

@@ -12,7 +12,7 @@ export default function Contact() {
         subject: "",
         message: "",
     });
-    const [status, setStatus] = useState("");
+    const [status,] = useState("");
     const [loading, setLoading] = useState(false); // Add loading state
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
