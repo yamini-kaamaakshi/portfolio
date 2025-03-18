@@ -5,14 +5,38 @@ import { usePathname } from "next/navigation";
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-black dark:bg-black backdrop-blur-md shadow-md border-t border-gray-700 text-center p-4">
+        <footer className="w-full bg-black dark:bg-black backdrop-blur-md shadow-md border-t border-gray-700 text-center p-6">
             <nav className="flex justify-center space-x-6">
                 <NavLink href="/" label="Home" />
                 <NavLink href="/about" label="About" />
                 <NavLink href="/projects" label="Projects" />
                 <NavLink href="/contact" label="Contact" />
             </nav>
-            <p className="mt-2 text-sm text-white">
+
+            {/* Contact Methods */}
+            <div className="mt-4 text-white text-sm">
+                <h2 className="text-lg font-semibold mb-2">Contact Me</h2>
+                <p>
+                    Email:
+                    <a href="mailto:yaminikaamaakshi@example.com" className="text-yellow-400 hover:underline ml-1">
+                        yaminikaamaakshi@example.com
+                    </a>
+                </p>
+                <p className="mt-2">Connect with me:</p>
+                <div className="flex justify-center space-x-4 mt-2">
+                    <Link href="https://www.linkedin.com/in/kaamaakshi-yamini-462b9b249/" target="_blank">
+                        <img src="/images/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
+                    </Link>
+                    <Link href="https://github.com/yamini-kaamaakshi" target="_blank">
+                        <img src="/images/github.png" alt="GitHub" className="w-5 h-5" />
+                    </Link>
+                    <Link href="https://x.com/Yamini765" target="_blank">
+                        <img src="/images/x.svg" alt="Twitter" className="w-5 h-5" />
+                    </Link>
+                </div>
+            </div>
+
+            <p className="mt-4 text-xs text-gray-400">
                 © {new Date().getFullYear()} My Portfolio. All Rights Reserved.
             </p>
         </footer>

@@ -113,7 +113,7 @@ export default function Contact() {
                     <li>
                         <Link href="https://github.com/yamini-kaamaakshi" target="_blank"
                               className="text-blue-600 hover:underline flex items-center">
-                            <img src="/images/github.svg" alt="GitHub" className="w-5 h-5 mr-2" />
+                            <img src="/images/github.png" alt="GitHub" className="w-5 h-5 mr-2" />
                             GitHub
                         </Link>
                     </li>
