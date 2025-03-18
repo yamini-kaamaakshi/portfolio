@@ -28,15 +28,12 @@ export default function Contact() {
             });
 
             if (response.ok) {
-                setStatus("✅ Message sent successfully!");
                 toast.success("✅ Message sent successfully!");
                 setFormData({ name: "", email: "", subject: "", message: "" });
             } else {
-                setStatus("❌ Failed to send message. Try again.");
                 toast.error("❌ Failed to send message. Try again.");
             }
         } catch {
-            setStatus("❌ Error sending message. Please try later.");
             toast.error("❌ Error sending message. Please try later.");
         }
     };
