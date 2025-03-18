@@ -15,28 +15,24 @@ const isPublicRoute = createRouteMatcher(["/", "/sign-in(.*)", "/sign-up(.*)"]);
 const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-    try {
-        const authResult = await auth();
-        const { userId, redirectToSignIn } = authResult;
-        const sessionClaims = authResult as SessionClaims;
+    // Get the session claims and userId from the auth object
+    const { userId, redirectToSignIn } = await auth();
+    const sessionClaims = await auth() as SessionClaims;
 
-        if (
-            isAdminRoute(req) &&
-            sessionClaims.sessionClaims?.metadata?.role !== "admin"
-        ) {
-            const url = new URL("/", req.url);
-            return NextResponse.redirect(url);
-        }
+    // Check if it's an admin route and if the user's role is not "admin"
+    if (
+        isAdminRoute(req) &&
+        sessionClaims.sessionClaims?.metadata?.role !== "admin"
+    ) {
+        const url = new URL("/", req.url);
+        return NextResponse.redirect(url);
+    }
 
-        if (!userId && !isPublicRoute(req)) {
-            return redirectToSignIn();
-        }
-    } catch (error) {
-        console.error("Middleware error:", error);
-        return NextResponse.error();  // Return an error response for debugging
+    // If the user is not authenticated and the route is not public, redirect to sign-in
+    if (!userId && !isPublicRoute(req)) {
+        return redirectToSignIn();
     }
 });
-
 
 // Matcher configuration to specify which routes to apply the middleware to
 export const config = {
