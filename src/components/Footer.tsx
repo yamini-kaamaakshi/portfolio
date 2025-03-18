@@ -22,7 +22,7 @@ export default function Footer() {
                         yaminikaamaakshi@example.com
                     </a>
                 </p>
-                <p className="mt-2">Connect with me:</p>
+                <p className="mt-2">Connect with me on:</p>
                 <div className="flex justify-center space-x-4 mt-2">
                     <Link href="https://www.linkedin.com/in/kaamaakshi-yamini-462b9b249/" target="_blank">
                         <img src="/images/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
