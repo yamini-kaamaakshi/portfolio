@@ -5,6 +5,7 @@ import { projects } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params); // ✅ Unwrap the params properly
@@ -87,7 +88,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        <img src={image} alt={`Project image ${index + 1}`} />
+                        <Image width={500} height={200} src={image} alt={`Project image ${index + 1}`} />
                     </motion.div>
                 ))}
 

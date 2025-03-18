@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -25,13 +26,13 @@ export default function Footer() {
                 <p className="mt-2">Connect with me on:</p>
                 <div className="flex justify-center space-x-4 mt-2">
                     <Link href="https://www.linkedin.com/in/kaamaakshi-yamini-462b9b249/" target="_blank">
-                        <img src="/images/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
+                        <Image width={50} height={50} src="/images/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
                     </Link>
                     <Link href="https://github.com/yamini-kaamaakshi" target="_blank">
-                        <img src="/images/github.png" alt="GitHub" className="w-5 h-5" />
+                        <Image width={50} height={50} src="/images/github.png" alt="GitHub" className="w-5 h-5" />
                     </Link>
                     <Link href="https://x.com/Yamini765" target="_blank">
-                        <img src="/images/x.svg" alt="Twitter" className="w-5 h-5" />
+                        <Image width={50} height={50} src="/images/x.svg" alt="Twitter" className="w-5 h-5" />
                     </Link>
                 </div>
             </div>
