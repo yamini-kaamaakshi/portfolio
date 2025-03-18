@@ -12,7 +12,7 @@ export default function Navbar() {
         <nav className="fixed top-0 left-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md border-b border-gray-200 dark:border-gray-700 z-50">
             <div className="container mx-auto flex justify-between items-center py-4 px-6">
                 {/* Logo / Title */}
-                <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white tracking-wide">
+                <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-wide">
                     My Portfolio
                 </h1>
 

@@ -16,7 +16,7 @@ export const projects = [
         problemStatement: "Creating a modern portfolio website that is fast, responsive, and easy to maintain.",
         solutionApproach: "Used Next.js for SSR and Tailwind CSS for styling, ensuring performance and scalability.",
         technologies: ["Next.js", "Stripe", "Tailwind CSS"],
-        image: "/images/ecommerce.svg",
+        image: "/images/ecommerce.jpg",
         github: "https://github.com/yamini-kaamaakshi/eCommerce-app-nextjs.git",
     },
 
@@ -27,7 +27,7 @@ export const projects = [
         problemStatement: "Providing an intuitive interface for users to create flow diagrams dynamically.",
         solutionApproach: "Used React Flow for custom node support and implemented real-time updates.",
         technologies: ["React Flow", "React.js"],
-        image: "/images/reactflow.svg",
+        image: "/images/announcements.jpg",
         github: "https://github.com/yamini-kaamaakshi/react-flow-builder.git",
     }
 ];
