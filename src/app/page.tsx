@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { projects } from "@/lib/projects";
+import Image from "next/image";
 
 export default function Home() {
     return (
@@ -7,13 +8,27 @@ export default function Home() {
 
             {/* Hero Section */}
             <section className="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl mb-24 text-center md:text-left">
-                <div className="md:ml-10 mt-12 md:mt-0">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
-                        Hi, I'm <span className="text-blue-500 dark:text-yellow-400">Yamini</span>
-                    </h1>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
-                        A passionate developer dedicated to building high-quality applications.
-                    </p>
+                <div className="flex items-center">
+                    {/* Profile Picture */}
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg mr-6">
+                        <Image
+                            src="/images/profile.webp"
+                            alt="Profile Picture"
+                            width={160}
+                            height={160}
+                            className="object-cover w-full h-full"
+                        />
+                    </div>
+
+                    {/* Name & Introduction */}
+                    <div>
+                        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
+                            Hi, I'm <span className="text-blue-500 dark:text-yellow-400">Yamini</span>
+                        </h1>
+                        <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
+                            A passionate developer dedicated to building high-quality applications.
+                        </p>
+                    </div>
                 </div>
             </section>
 
