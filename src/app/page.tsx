@@ -116,7 +116,7 @@ export default function Home() {
             >
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Get in Touch</h2>
                 <p className="text-lg text-gray-600 dark:text-gray-300">
-                    Interested in working together? Let's connect!
+                    Interested in working together? Let&apos;s connect!
                 </p>
                 <motion.div
                     whileHover={{ scale: 1.1 }}

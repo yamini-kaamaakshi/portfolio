@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import { socialMediaLinks } from "@/lib/socialMediaLinks";
+import Image from "next/image";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -166,10 +167,12 @@ export default function Contact() {
                             target="_blank"
                             whileHover={{ scale: 1.1 }}
                         >
-                            <img
+                            <Image
                                 src={socialMediaLinks[platform as keyof typeof socialMediaLinks].icon}  // Accessing the icon
                                 alt={platform}
                                 className="w-8 h-8"
+                                width={50}
+                                height={50}
                             />
                         </motion.a>
                     ))}
