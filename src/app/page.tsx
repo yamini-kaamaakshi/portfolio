@@ -44,7 +44,7 @@ export default function Home() {
                     {/* Name & Introduction */}
                     <div>
                         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
-                            Hi, I'm <span className="text-blue-500 dark:text-yellow-400">{data.name}</span>
+                            Hi, I&apos;m <span className="text-blue-500 dark:text-yellow-400">{data.name}</span>
                         </h1>
                         <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
                             {data.description}
