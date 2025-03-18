@@ -3,7 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // Icon for menu toggle
+import { Menu, X } from "lucide-react";
+import {
+    SignInButton,
+    SignOutButton,
+    SignUpButton,
+    SignedIn,
+    SignedOut,
+} from "@clerk/nextjs";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -12,7 +19,7 @@ export default function Navbar() {
         <nav className="fixed top-0 left-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md border-b border-gray-200 dark:border-gray-700 z-50">
             <div className="container mx-auto flex justify-between items-center py-4 px-6">
                 {/* Logo / Title */}
-                <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-wide">
+                <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-wide">
                     My Portfolio
                 </h1>
 
@@ -24,9 +31,27 @@ export default function Navbar() {
                 {/* Navigation Links */}
                 <div className={`md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-white dark:bg-gray-900 md:bg-transparent p-6 md:p-0 transition-all duration-300 ${menuOpen ? "block" : "hidden"}`}>
                     <NavLink href="/" label="Home" setMenuOpen={setMenuOpen} />
-                    <NavLink href="/about" label="About" setMenuOpen={setMenuOpen} />
-                    <NavLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
-                    <NavLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
+
+                    <div className="flex items-center gap-4">
+                        <SignedOut>
+                            <SignInButton>
+                                <button className="px-2 py-1 text-sm border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                                    Sign In
+                                </button>
+                            </SignInButton>
+                            <SignUpButton>
+                                <button className="px-2 py-1 text-sm border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                                    Sign Up
+                                </button>
+                            </SignUpButton>
+                        </SignedOut>
+                        <SignedIn>
+                            <NavLink href="/about" label="About" setMenuOpen={setMenuOpen} />
+                            <NavLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
+                            <NavLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
+                            <SignOutButton />
+                        </SignedIn>
+                    </div>
                 </div>
             </div>
         </nav>
