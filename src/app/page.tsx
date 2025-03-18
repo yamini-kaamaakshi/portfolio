@@ -4,7 +4,7 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
+import { data } from "@/lib/home";
 // Animation Variants
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -44,10 +44,10 @@ export default function Home() {
                     {/* Name & Introduction */}
                     <div>
                         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
-                            Hi, I'm <span className="text-blue-500 dark:text-yellow-400">Yamini</span>
+                            Hi, I'm <span className="text-blue-500 dark:text-yellow-400">{data.name}</span>
                         </h1>
                         <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
-                            A passionate developer dedicated to building high-quality applications.
+                            {data.description}
                         </p>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export default function Home() {
                     initial="hidden"
                     animate="visible"
                 >
-                    {["Core Java", "Spring Boot", "HTML 5", "CSS", "JavaScript", "React.js", "Next.js", "MongoDB"].map((skill) => (
+                    {data.skills.map((skill) => (
                         <motion.span
                             key={skill}
                             variants={fadeInUp}

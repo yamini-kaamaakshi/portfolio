@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import Link from "next/link";
 import { motion } from "framer-motion";
-
+import  {socialMediaLinks} from "@/lib/socialMediaLinks"
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: "",
@@ -148,27 +147,20 @@ export default function Contact() {
             >
                 <h2 className="text-lg font-semibold mb-2">Other Ways to Connect</h2>
                 <div className="flex justify-center space-x-4 mt-2">
-                    <motion.a
-                        href="https://www.linkedin.com/in/kaamaakshi-yamini-462b9b249/"
-                        target="_blank"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <img src="/images/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
-                    </motion.a>
-                    <motion.a
-                        href="https://github.com/yamini-kaamaakshi"
-                        target="_blank"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <img src="/images/github.png" alt="GitHub" className="w-8 h-8" />
-                    </motion.a>
-                    <motion.a
-                        href="https://x.com/Yamini765"
-                        target="_blank"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        <img src="/images/x.svg" alt="Twitter" className="w-8 h-8" />
-                    </motion.a>
+                    {Object.keys(socialMediaLinks).map((platform) => (
+                        <motion.a
+                            key={platform}
+                            href={socialMediaLinks[platform as keyof typeof socialMediaLinks].url}  // Accessing the url
+                            target="_blank"
+                            whileHover={{ scale: 1.1 }}
+                        >
+                            <img
+                                src={socialMediaLinks[platform as keyof typeof socialMediaLinks].icon}  // Accessing the icon
+                                alt={platform}
+                                className="w-8 h-8"
+                            />
+                        </motion.a>
+                    ))}
                 </div>
             </motion.div>
         </motion.main>
