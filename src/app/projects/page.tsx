@@ -92,9 +92,9 @@ export default function ProjectsPage() {
                                 {project.title}
                             </h2>
 
-                            {project.image && (
+                            {project.images && project.images.length > 0 && (
                                 <motion.img
-                                    src={project.image}
+                                    src={project.images[0]} // Display the first image
                                     alt={project.title}
                                     className="w-full h-48 object-cover rounded-lg mt-4"
                                     initial={{ opacity: 0 }}
@@ -102,6 +102,7 @@ export default function ProjectsPage() {
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                 />
                             )}
+
 
                             <p className="text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
                                 {project.description.length > 100

@@ -79,20 +79,19 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 </div>
 
                 {/* Project Image */}
-                {project.image && (
+                {project.images && project.images.length > 0 && project.images.map((image, index) => (
                     <motion.div
+                        key={index} // Key should be placed here
                         className="flex justify-center mt-6"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full max-w-2xl rounded-lg shadow-lg object-cover h-auto"
-                        />
+                        <img src={image} alt={`Project image ${index + 1}`} />
                     </motion.div>
-                )}
+                ))}
+
+
             </motion.div>
 
             {/* Buttons */}

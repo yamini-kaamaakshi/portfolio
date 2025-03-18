@@ -1,9 +1,9 @@
-"use client";
-
+"use client"
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import  {socialMediaLinks} from "@/lib/socialMediaLinks"
+import { socialMediaLinks } from "@/lib/socialMediaLinks";
+
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: "",
@@ -12,6 +12,7 @@ export default function Contact() {
         message: "",
     });
     const [status, setStatus] = useState("");
+    const [loading, setLoading] = useState(false); // Add loading state
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,6 +20,7 @@ export default function Contact() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true); // Set loading state to true when form is submitted
 
         try {
             const response = await fetch("/api/contact", {
@@ -35,6 +37,8 @@ export default function Contact() {
             }
         } catch {
             toast.error("❌ Error sending message. Please try later.");
+        } finally {
+            setLoading(false); // Set loading state to false when request is finished
         }
     };
 
@@ -45,7 +49,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <Toaster position="top-right" reverseOrder={false} />
+            <Toaster position="bottom-right" reverseOrder={false} />
 
             <motion.h1
                 className="mt-10 text-3xl font-bold mb-4"
@@ -65,14 +69,16 @@ export default function Contact() {
                 Feel free to reach out via email or through the contact form below.
             </motion.p>
 
-            {status && <motion.p
-                className="mt-4 text-center text-green-600"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-            >
-                {status}
-            </motion.p>}
+            {status && (
+                <motion.p
+                    className="mt-4 text-center text-green-600"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {status}
+                </motion.p>
+            )}
 
             <motion.form
                 onSubmit={handleSubmit}
@@ -125,13 +131,22 @@ export default function Contact() {
                         required
                     ></textarea>
                 </div>
+
+                {/* Disable the button when loading */}
                 <motion.button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                    className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition ${
+                        loading ? "cursor-not-allowed opacity-50" : ""
+                    }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    disabled={loading} // Disable button when loading
                 >
-                    Send Message
+                    {loading ? (
+                        <span className="animate-spin">🔄</span> // Loading spinner
+                    ) : (
+                        "Send Message"
+                    )}
                 </motion.button>
             </motion.form>
 
