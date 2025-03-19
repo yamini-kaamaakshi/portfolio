@@ -27,32 +27,30 @@ export default function Home() {
             {/* Hero Section */}
             <motion.section
                 variants={fadeInUp}
-                className="flex flex-col md:flex-row items-center justify-center w-full max-w-5xl mb-24 text-center md:text-left"
+                className="flex flex-col sm:flex-col md:flex-row items-center justify-center w-full max-w-5xl mb-24 text-center md:text-left"
             >
-                <div className="flex items-center">
-                    {/* Profile Picture */}
-                    <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-lg mr-4 sm:mr-6 flex-shrink-0">
-                        <Image
-                            src="/images/profile.webp"
-                            alt="Profile Picture"
-                            width={160}
-                            height={160}
-                            className="object-cover w-full h-full"
-                        />
-                    </div>
+                {/* Profile Picture */}
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-lg mb-4 md:mb-0">
+                    <Image
+                        src="/images/profile.webp"
+                        alt="Profile Picture"
+                        width={160}
+                        height={160}
+                        className="object-cover w-full h-full"
+                    />
+                </div>
 
-
-                    {/* Name & Introduction */}
-                    <div>
-                        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
-                            Hi, I&apos;m <span className="text-blue-500 dark:text-yellow-400">{data.name}</span>
-                        </h1>
-                        <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
-                            {data.description}
-                        </p>
-                    </div>
+                {/* Name & Introduction */}
+                <div>
+                    <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
+                        Hi, I&apos;m <span className="text-blue-500 dark:text-yellow-400">{data.name}</span>
+                    </h1>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">
+                        {data.description}
+                    </p>
                 </div>
             </motion.section>
+
 
             {/* Skills Section */}
             <motion.section
