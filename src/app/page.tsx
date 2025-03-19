@@ -101,8 +101,9 @@ export default function Home() {
                                     ? project.description.slice(0, 80) + "..."
                                     : project.description}
                             </p>
-                            <Link href={`/projects/${project.id}`} className="text-blue-500 dark:text-yellow-400 mt-3 inline-block">
-                                View More
+                            <Link href={`/projects/${project.id}`}
+                                  className="text-blue-500 dark:text-yellow-400 mt-3 inline-block relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-500 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 dark:after:bg-yellow-400">
+                                View More →
                             </Link>
                         </motion.div>
                     ))}
