@@ -31,7 +31,7 @@ export default function Home() {
             >
                 <div className="flex items-center">
                     {/* Profile Picture */}
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg mr-6">
+                    <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-lg mr-4 sm:mr-6 flex-shrink-0">
                         <Image
                             src="/images/profile.webp"
                             alt="Profile Picture"
@@ -40,6 +40,7 @@ export default function Home() {
                             className="object-cover w-full h-full"
                         />
                     </div>
+
 
                     {/* Name & Introduction */}
                     <div>
