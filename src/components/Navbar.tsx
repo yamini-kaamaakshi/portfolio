@@ -29,36 +29,51 @@ export default function Navbar() {
                 </button>
 
                 {/* Navigation Links */}
-                <div className={`md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-white dark:bg-gray-900 md:bg-transparent p-6 md:p-0 transition-all duration-300 ${menuOpen ? "block" : "hidden"}`}>
+                <div
+                    className={`absolute md:static top-16 left-0 w-full md:w-auto bg-white dark:bg-gray-900 md:bg-transparent p-6 md:p-0 transition-all duration-300 ${
+                        menuOpen
+                            ? "flex flex-col items-center space-y-4"
+                            : "hidden md:flex md:items-center md:space-x-6"
+                    }`}
+                >
                     <NavLink href="/" label="Home" setMenuOpen={setMenuOpen} />
 
-                    <div className="flex items-center gap-4">
-                        <SignedOut>
+                    <SignedOut>
+                        <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                             <SignInButton>
-                                <button className="px-2 py-1 text-sm border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                                <button className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
                                     Sign In
                                 </button>
                             </SignInButton>
                             <SignUpButton>
-                                <button className="px-2 py-1 text-sm border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                                <button className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
                                     Sign Up
                                 </button>
                             </SignUpButton>
-                        </SignedOut>
-                        <SignedIn>
-                            <NavLink href="/about" label="About" setMenuOpen={setMenuOpen} />
-                            <NavLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
-                            <NavLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
-                            <SignOutButton />
-                        </SignedIn>
-                    </div>
+                        </div>
+                    </SignedOut>
+
+                    <SignedIn>
+                        <NavLink href="/about" label="About" setMenuOpen={setMenuOpen} />
+                        <NavLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
+                        <NavLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
+                        <SignOutButton />
+                    </SignedIn>
                 </div>
             </div>
         </nav>
     );
 }
 
-function NavLink({ href, label, setMenuOpen }: { href: string; label: string; setMenuOpen: (open: boolean) => void }) {
+function NavLink({
+                     href,
+                     label,
+                     setMenuOpen,
+                 }: {
+    href: string;
+    label: string;
+    setMenuOpen: (open: boolean) => void;
+}) {
     const pathname = usePathname();
     const isActive = pathname === href;
 
