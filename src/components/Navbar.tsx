@@ -4,6 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import {
+    SignInButton,
+    SignOutButton,
+    SignUpButton,
+    SignedIn,
+    SignedOut,
+} from "@clerk/nextjs";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -24,9 +31,27 @@ export default function Navbar() {
                 {/* Navigation Links */}
                 <div className={`md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-white dark:bg-gray-900 md:bg-transparent p-6 md:p-0 transition-all duration-300 ${menuOpen ? "block" : "hidden"}`}>
                     <NavLink href="/" label="Home" setMenuOpen={setMenuOpen} />
-                    <NavLink href="/about" label="About" setMenuOpen={setMenuOpen} />
-                    <NavLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
-                    <NavLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
+
+                    <div className="flex items-center gap-4">
+                        <SignedOut>
+                            <SignInButton>
+                                <button className="px-2 py-1 text-sm border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                                    Sign In
+                                </button>
+                            </SignInButton>
+                            <SignUpButton>
+                                <button className="px-2 py-1 text-sm border border-neutral-300 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700">
+                                    Sign Up
+                                </button>
+                            </SignUpButton>
+                        </SignedOut>
+                        <SignedIn>
+                            <NavLink href="/about" label="About" setMenuOpen={setMenuOpen} />
+                            <NavLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
+                            <NavLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
+                            <SignOutButton />
+                        </SignedIn>
+                    </div>
                 </div>
             </div>
         </nav>
