@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params); // ✅ Unwrap the params properly
 
