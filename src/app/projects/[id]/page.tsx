@@ -115,6 +115,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 ))
             }
 
+
             <motion.div
                 className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4"
                 initial={{ opacity: 0, y: 20 }}

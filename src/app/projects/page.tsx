@@ -64,6 +64,7 @@ export default function ProjectsPage() {
                 </ul>
             </motion.aside>
 
+
             {/* Main Content */}
             <div className="w-full lg:w-3/4">
                 <motion.h1
