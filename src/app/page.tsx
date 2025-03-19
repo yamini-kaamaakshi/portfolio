@@ -110,6 +110,7 @@ export default function Home() {
                 </motion.div>
             </motion.section>
 
+
             {/* Contact Section */}
             <motion.section
                 variants={fadeInUp}
