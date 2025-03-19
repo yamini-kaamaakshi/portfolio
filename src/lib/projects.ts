@@ -15,7 +15,7 @@ export const projects = [
         description: "A robust e-commerce platform developed using Next.js and MongoDB. It features a seamless checkout process using Stripe, user authentication, and an admin dashboard for managing products, orders, and users.",
         problemStatement: "Developing a scalable and user-friendly e-commerce platform with secure transactions and easy product management.",
         solutionApproach: "Used Next.js for server-side rendering and MongoDB for efficient data storage. Integrated Stripe for payments and implemented user authentication for a secure experience.",
-        technologies: ["Next.js", "Tailwind CSS", "MongoDB", "Stripe"],
+        technologies: ["Next.js", "Tailwind CSS",],
         images: ["/images/home.jpg", "/images/products.jpg", "/images/cart.jpg", "/images/orders.jpg"],
         github: "https://github.com/yamini-kaamaakshi/eCommerce-app-nextjs.git",
     },
