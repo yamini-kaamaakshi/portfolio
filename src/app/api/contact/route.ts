@@ -1,25 +1,24 @@
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
-    const { name, email, subject, message } = await req.json(); // Get subject from request
+    const { name, email, subject, message } = await req.json();
 
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "yaminikaamaakshi@gmail.com", // Your email
-            pass: "axrs kgda xetv ipam", // Your app password (Ensure it's safe)
+            user: process.env.EMAIL_USER, // Use env variable
+            pass: process.env.EMAIL_PASS, // Use env variable
         },
     });
 
     const mailOptions = {
-        from: `"Portfolio" <yaminikaamaakshi@gmail.com>`, // Custom sender name
-        to: "yaminikaamaakshi@gmail.com", // Your receiving email
-        subject: `Portfolio: ${subject} (From ${name})`, // Include subject in email
-        text: `Name: ${name}\nEmail: ${email}\n\n${message}`, // Include name, email, and message
-        replyTo: email, // Allows direct replies to the sender
+        from: `"Portfolio" <${process.env.EMAIL_USER}>`,
+        to: process.env.EMAIL_USER,
+        subject: `Portfolio: ${subject} (From ${name})`,
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+        replyTo: email,
     };
 
-    // Default error handling, no explicit catch block
     const info = await transporter.sendMail(mailOptions);
     console.log(info);
 
@@ -28,4 +27,3 @@ export async function POST(req: Request) {
         { status: 200 }
     );
 }
-
