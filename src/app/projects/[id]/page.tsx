@@ -102,12 +102,15 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                         transition={{ duration: 0.7, delay: 0.3 + index * 0.2 }}
                     >
                         <Image
-                            width={500}
-                            height={200}
                             src={image}
                             alt={`Project image ${index + 1}`}
+                            width={1000}
+                            height={600}
+                            quality={100}
+                            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 500px"
                             className="rounded-lg shadow-md"
                         />
+
                     </motion.div>
                 ))
             }

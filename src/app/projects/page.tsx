@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { projects } from "@/lib/projects";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ProjectsPage() {
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -93,14 +94,22 @@ export default function ProjectsPage() {
                             </h2>
 
                             {project.images && project.images.length > 0 && (
-                                <motion.img
-                                    src={project.images[0]} // Display the first image
-                                    alt={project.title}
-                                    className="w-full h-48 object-cover rounded-lg mt-4"
+                                <motion.div
+                                    className="w-full h-48 rounded-lg overflow-hidden"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5, delay: 0.2 }}
-                                />
+                                >
+                                    <Image
+                                        src={project.images[0]}
+                                        alt={project.title}
+                                        width={500} // Set a higher width
+                                        height={300} // Set a higher height
+                                        quality={100} // Ensures high resolution
+                                        className="w-full h-full object-contain"
+                                    />
+                                </motion.div>
+
                             )}
 
 
