@@ -51,7 +51,6 @@ export default function Home() {
                 </div>
             </motion.section>
 
-
             {/* Skills Section */}
             <motion.section
                 variants={fadeInUp}
