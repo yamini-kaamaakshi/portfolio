@@ -1,45 +1,47 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-// Define the SessionClaims type to include metadata and role.
+// Define a type for session claims
 interface SessionClaims {
-    sessionClaims?: {
-        metadata?: {
-            role?: string; // Role is optional, depending on your setup.
-        };
+    metadata?: {
+        role?: string;
     };
-    userId?: string; // Add other necessary properties based on your Clerk session object.
 }
 
+// Define route matchers
 const isPublicRoute = createRouteMatcher(["/", "/sign-in(.*)", "/sign-up(.*)"]);
 const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-    // Get the session claims and userId from the auth object
-    const { userId, redirectToSignIn } = await auth();
-    const sessionClaims = await auth() as SessionClaims;
+    try {
+        // Get authentication data
+        const { userId, redirectToSignIn, sessionClaims } = await auth();
 
-    // Check if it's an admin route and if the user's role is not "admin"
-    if (
-        isAdminRoute(req) &&
-        sessionClaims.sessionClaims?.metadata?.role !== "admin"
-    ) {
-        const url = new URL("/", req.url);
-        return NextResponse.redirect(url);
-    }
+        // Ensure sessionClaims has the expected type
+        const claims = sessionClaims as SessionClaims;
+        const userRole = claims?.metadata?.role;
 
-    // If the user is not authenticated and the route is not public, redirect to sign-in
-    if (!userId && !isPublicRoute(req)) {
-        return redirectToSignIn();
+        // Restrict admin routes to users with 'admin' role
+        if (isAdminRoute(req) && userRole !== "admin") {
+            return NextResponse.redirect(new URL("/", req.url));
+        }
+
+        // Redirect unauthenticated users trying to access protected routes
+        if (!userId && !isPublicRoute(req)) {
+            return redirectToSignIn();
+        }
+    } catch (error) {
+        console.error("Middleware error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 });
 
-// Matcher configuration to specify which routes to apply the middleware to
+// Matcher configuration to specify which routes to apply middleware
 export const config = {
     matcher: [
-        // Skip Next.js internals and all static files, unless found in search params
-        "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-        // Always run for API routes
+        // Exclude Next.js internals and static files
+        "/((?!_next/static|_next/image|favicon.ico).*)",
+        // Always apply middleware for API routes
         "/(api|trpc)(.*)",
     ],
 };
