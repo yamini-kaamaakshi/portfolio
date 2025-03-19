@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import {socialMediaLinks} from "@/lib/socialMediaLinks";
 
 export default function Footer() {
     return (
@@ -14,26 +15,20 @@ export default function Footer() {
                 <NavLink href="/contact" label="Contact" />
             </nav>
 
-            {/* Contact Methods */}
             <div className="mt-4 text-white text-sm">
-                <h2 className="text-lg font-semibold mb-2">Contact Me</h2>
-                <p>
-                    Email:
-                    <a href="mailto:yaminikaamaakshi@example.com" className="text-yellow-400 hover:underline ml-1">
-                        yaminikaamaakshi@example.com
-                    </a>
-                </p>
                 <p className="mt-2">Connect with me on:</p>
                 <div className="flex justify-center space-x-4 mt-2">
-                    <Link href="https://www.linkedin.com/in/kaamaakshi-yamini-462b9b249/" target="_blank">
-                        <Image width={50} height={50} src="/images/linkedin.svg" alt="LinkedIn" className="w-5 h-5" />
-                    </Link>
-                    <Link href="https://github.com/yamini-kaamaakshi" target="_blank">
-                        <Image width={50} height={50} src="/images/github.png" alt="GitHub" className="w-5 h-5" />
-                    </Link>
-                    <Link href="https://x.com/Yamini765" target="_blank">
-                        <Image width={50} height={50} src="/images/x.svg" alt="Twitter" className="w-5 h-5" />
-                    </Link>
+                    {Object.entries(socialMediaLinks).map(([platform, { url, icon }]) => (
+                        <Link key={platform} href={url} target="_blank">
+                            <Image
+                                width={50}
+                                height={50}
+                                src={icon}
+                                alt={platform}
+                                className="w-5 h-5"
+                            />
+                        </Link>
+                    ))}
                 </div>
             </div>
 
