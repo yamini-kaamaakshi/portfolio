@@ -23,7 +23,6 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
         >
-            {/* Project Title */}
             <motion.h1
                 className="text-4xl font-bold text-gray-900 dark:text-white text-center mb-6"
                 initial={{ opacity: 0, y: -20 }}
@@ -33,7 +32,6 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 {project.title}
             </motion.h1>
 
-            {/* Project Description */}
             <motion.p
                 className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 10 }}
@@ -43,9 +41,8 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 {project.description}
             </motion.p>
 
-            {/* Project Details Card */}
             <motion.div
-                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
@@ -56,15 +53,29 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {project.problemStatement}
                 </p>
+            </motion.div>
 
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">
+            <motion.div
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+            >
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
                     Solution Approach
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {project.solutionApproach}
                 </p>
+            </motion.div>
 
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">
+            <motion.div
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+            >
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
                     Technologies Used
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -78,31 +89,34 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                         </motion.span>
                     ))}
                 </div>
-
-                {/* Project Image */}
-                {project.images && project.images.length > 0 && project.images.map((image, index) => (
-                    <motion.div
-                        key={index} // Key should be placed here
-                        className="flex justify-center mt-6"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                        <Image width={500} height={200} src={image} alt={`Project image ${index + 1}`} />
-                    </motion.div>
-                ))}
-
-
             </motion.div>
 
-            {/* Buttons */}
+            {project.images && project.images.length > 0 &&
+                project.images.map((image, index) => (
+                    <motion.div
+                        key={index}
+                        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6 flex justify-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.3 + index * 0.2 }}
+                    >
+                        <Image
+                            width={500}
+                            height={200}
+                            src={image}
+                            alt={`Project image ${index + 1}`}
+                            className="rounded-lg shadow-md"
+                        />
+                    </motion.div>
+                ))
+            }
+
             <motion.div
                 className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
             >
-                {/* GitHub Button */}
                 <motion.a
                     href={project.github}
                     target="_blank"
@@ -113,7 +127,6 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     GitHub Repo →
                 </motion.a>
 
-                {/* Back to Projects */}
                 <Link
                     href="/projects"
                     className="text-lg text-blue-600 dark:text-blue-400 hover:underline"
