@@ -30,7 +30,8 @@ export default function Home() {
                 className="flex flex-col sm:flex-col md:flex-row items-center justify-center w-full max-w-5xl mb-24 text-center md:text-left"
             >
                 {/* Profile Picture */}
-                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-lg mb-4 md:mb-0">
+                {/* Profile Picture */}
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-lg mb-4 md:mb-0 md:mr-6 lg:mr-8">
                     <Image
                         src="/images/profile.webp"
                         alt="Profile Picture"
@@ -39,6 +40,7 @@ export default function Home() {
                         className="object-cover w-full h-full"
                     />
                 </div>
+
 
                 {/* Name & Introduction */}
                 <div>
